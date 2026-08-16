@@ -24,6 +24,8 @@
 
 html {
   min-width: 320px;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
   background: var(--page);
   scrollbar-color: #424757 var(--page);

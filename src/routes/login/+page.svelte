@@ -9,7 +9,7 @@
 <main class="login-page">
   <div class="login-shell">
     <header class="login-header">
-      <a class="wordmark" href="/" aria-label="Back to Znayu status page">znayu</a>
+      <a class="wordmark" href="/status/acme-cloud" aria-label="Back to Znayu status page">znayu</a>
       <span class="access-label">Operator access</span>
     </header>
 
@@ -43,7 +43,7 @@
     </section>
 
     <footer class="login-footer">
-      <a href="/">View public status</a>
+      <a href="/status/acme-cloud">View public status</a>
       <span aria-hidden="true">·</span>
       <span>Znayu self-hosted status</span>
     </footer>

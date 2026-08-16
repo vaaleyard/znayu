@@ -33,7 +33,7 @@
       <a href="/dashboard"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 10h5V3H3v7Zm9 7h5v-7h-5v7ZM3 17h5v-4H3v4Zm9-14v4h5V3h-5Z" /></svg> Overview</a>
       <a class="active" href="/status-pages" aria-current="page"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 4.5h14v11H3v-11Zm3 3h8M6 11h5" /></svg> Status pages</a>
       <a href="/monitors"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 15.5V4.5h14v11H3Zm3-3 2-2 2 1.5 3-4 2 2.5" /></svg> Monitors</a>
-      <a href="/dashboard#activity"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v7l4 2M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg> Activity</a>
+      <a href="/activity"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v7l4 2M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg> Activity</a>
     </nav>
     <div class="sidebar-bottom"><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
   </aside>

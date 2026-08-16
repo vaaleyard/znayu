@@ -2,7 +2,7 @@
   <title>Sign in — Znayu</title>
   <meta
     name="description"
-    content="Sign in to the Znayu operator console."
+    content="Sign in to the Znayu admin console."
   />
 </svelte:head>
 

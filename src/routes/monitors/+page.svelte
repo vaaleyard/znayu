@@ -28,7 +28,7 @@
 
 <svelte:head>
   <title>Monitors — Znayu</title>
-  <meta name="description" content="Review monitors in the Znayu operator console." />
+  <meta name="description" content="Review monitors in the Znayu admin console." />
 </svelte:head>
 
 <main class:sidebar-collapsed={sidebarCollapsed} class="monitor-page">
@@ -44,12 +44,12 @@
       <a class="active" href="/monitors" aria-current="page"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 15.5V4.5h14v11H3Zm3-3 2-2 2 1.5 3-4 2 2.5" /></svg> Monitors</a>
       <a href="/dashboard#activity"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v7l4 2M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg> Activity</a>
     </nav>
-    <div class="sidebar-bottom"><a href="/status/acme-cloud" class="public-link">View public status</a><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
+    <div class="sidebar-bottom"><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
   </aside>
 
   <section class="monitor-content" aria-labelledby="monitor-title">
     <header class="content-header">
-      <div><p class="section-kicker">Operator console</p><h1 id="monitor-title">Monitors <span class="info-dot" title="Monitors check the health of your services.">i</span></h1></div>
+      <div><p class="section-kicker">Admin console</p><h1 id="monitor-title">Monitors <span class="info-dot" title="Monitors check the health of your services.">i</span></h1></div>
       <div class="header-actions"><label class="search-wrap"><span class="search-icon" aria-hidden="true"></span><span class="sr-only">Search monitors</span><input type="search" placeholder="Search monitors" /></label><div class="create-actions-inline"><a class="create-button secondary" href="/notifications/new">Create notification</a><a class="create-button" href="/monitors/new">Create monitor</a></div></div>
     </header>
 
@@ -71,7 +71,7 @@
       <summary class="register-header"><h2 id="notification-register-title"><svg class="section-chevron" aria-hidden="true" viewBox="0 0 16 16"><path d="m3.5 6 4.5 4 4.5-4" /></svg><svg class="section-item-icon" aria-hidden="true" viewBox="0 0 16 16"><path d="M3 5.5h10v7H3v-7Zm2-2h6M5 8.5h6M5 11h4" /></svg> Notifications</h2><span>{notifications.length} configured</span></summary>
       <div class="notification-rows">
         {#each notifications as notification}
-          <article class="notification-row"><span class="notification-state" aria-label={notification.state}></span><div class="notification-identity"><h3>{notification.name}</h3><p>{notification.type} · Used by {notification.usage}</p></div><span class="notification-status">{notification.state}</span><a class="notification-edit" href="/notifications/new">Edit</a></article>
+          <article class="notification-row"><span class="notification-state" aria-label={notification.state}></span><div class="notification-identity"><h3>{notification.name}</h3><p>{notification.type} · Used by {notification.usage}</p></div><span class="notification-status">{notification.state}</span><a class="notification-edit" href={`/notifications/new?edit=${notification.name.toLowerCase().replaceAll(' ', '-')}`}>Edit</a></article>
         {/each}
       </div>
     </details>

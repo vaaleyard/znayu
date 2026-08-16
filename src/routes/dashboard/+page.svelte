@@ -68,14 +68,13 @@
         <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 15.5V4.5h14v11H3Zm3-3 2-2 2 1.5 3-4 2 2.5" /></svg>
         Monitors
       </a>
-      <a href="#activity">
+      <a href="/activity">
         <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v7l4 2M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg>
         Activity
       </a>
     </nav>
 
     <div class="sidebar-bottom">
-      <a href="/status/acme-cloud" class="public-link">View public status <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6" /></svg></a>
       <div class="operator">
         <span class="operator-avatar" aria-hidden="true">JS</span>
         <span><strong>Jordan Smith</strong><small>Owner</small></span>
@@ -122,7 +121,7 @@
           {#each statusPages as page}
             <article class="status-page-row">
               <span class="page-mark {page.health.toLowerCase()}" role="img" aria-label={`${page.name}: ${page.health}`}></span>
-                <div class="page-identity"><h3><a href={`/status/${page.statusSlug}`}>{page.name}</a></h3><span>{page.slug}</span></div>
+                <div class="page-identity"><h3><a href={`/status-pages/new?edit=${page.statusSlug}`}>{page.name}</a> <a class="external-arrow-link" href={`/status/${page.statusSlug}`} aria-label={`Open public status page for ${page.name}`}><svg class="external-arrow" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6" /></svg></a></h3><span>{page.slug}</span></div>
               <div class="page-health {page.health.toLowerCase()}"><span></span>{page.health}</div>
               <div class="page-stat"><strong>{page.uptime}</strong><span>{page.services} services</span></div>
               <button type="button" class="row-menu" aria-label={`Actions for ${page.name}`}>More</button>
@@ -142,7 +141,7 @@
             </article>
           {/each}
         </div>
-        <a class="panel-link" href="#activity-log">View activity log</a>
+        <a class="panel-link" href="/activity">View activity log</a>
       </section>
 
       <section class="panel monitors-panel" id="monitors" aria-labelledby="monitors-title">
@@ -221,6 +220,7 @@
   .page-mark:not(.operational) { background: var(--red); }
   .page-identity { min-width: 0; }
   .page-identity h3, .activity-row h3 { overflow: hidden; font-size: 0.8125rem; font-weight: 600; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }.page-identity h3 a { color: inherit; text-decoration: none; }.page-identity h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .external-arrow-link { display: inline-flex; color: var(--muted); text-decoration: none; vertical-align: -1px; }.external-arrow-link:hover { color: var(--ink); }.external-arrow { display: inline-block !important; width: 12px; height: 12px; margin-left: 3px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.25; vertical-align: -1px; }
   .page-identity span { display: block; overflow: hidden; margin-top: 2px; text-overflow: ellipsis; white-space: nowrap; }
   .page-health { display: flex; align-items: center; gap: 6px; font-size: 0.6875rem; font-weight: 600; white-space: nowrap; }
   .page-health span { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }

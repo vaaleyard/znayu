@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/state';
   import { onMount } from 'svelte';
 
   let sidebarCollapsed = false;
@@ -9,6 +10,7 @@
   let maintenanceHistoryDays = '7';
   let showUpdateForm = false;
   let notifyUpdateSubscribers = true;
+  $: editing = page.url.searchParams.has('edit');
   let maintenances = [
     { id: 'database', title: 'Database maintenance', services: 'Billing API · Acme Cloud API', status: 'Scheduled', tone: 'scheduled', time: 'Aug 24, 02:00–03:00 UTC' },
     { id: 'edge', title: 'Edge network upgrade', services: 'CDN edge', status: 'Completed', tone: 'completed', time: 'Aug 12, 01:00–01:30 UTC' }
@@ -28,17 +30,17 @@
   }
 </script>
 
-<svelte:head><title>Create status page — Znayu</title><meta name="description" content="Create a public status page in the Znayu operator console." /></svelte:head>
+<svelte:head><title>{editing ? 'Edit status page' : 'Create status page'} — Znayu</title><meta name="description" content="Manage a public status page in the Znayu admin console." /></svelte:head>
 
 <main class:sidebar-collapsed={sidebarCollapsed} class="status-create-page">
   <aside class="sidebar" aria-label="Operator navigation">
     <div class="sidebar-top"><a class="wordmark" href="/dashboard" aria-label="Znayu operator dashboard">znayu</a><span class="console-label">Console</span><button class="sidebar-toggle" type="button" aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'} title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'} onclick={toggleSidebar}><svg aria-hidden="true" viewBox="0 0 20 20"><rect x="3.5" y="3.5" width="13" height="13" rx="2" /><path d="M8 3.5v13" />{#if sidebarCollapsed}<path d="m10.5 7 3 3-3 3" />{:else}<path d="m12.5 7-3 3 3 3" />{/if}</svg></button></div>
     <div class="create-actions"><a class="sidebar-create" href="/monitors/new"><span aria-hidden="true">+</span> Create monitor</a><a class="sidebar-create secondary" href="/status-pages/new">Create status page</a></div>
     <nav class="sidebar-nav" aria-label="Console sections"><a href="/dashboard"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 10h5V3H3v7Zm9 7h5v-7h-5v7ZM3 17h5v-4H3v4Zm9-14v4h5V3h-5Z" /></svg> Overview</a><a class="active" href="/status-pages" aria-current="page"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 4.5h14v11H3v-11Zm3 3h8M6 11h5" /></svg> Status pages</a><a href="/monitors"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 15.5V4.5h14v11H3Zm3-3 2-2 2 1.5 3-4 2 2.5" /></svg> Monitors</a><a href="/dashboard#activity"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v7l4 2M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg> Activity</a></nav>
-    <div class="sidebar-bottom"><a href="/status/acme-cloud" class="public-link">View public status</a><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
+    <div class="sidebar-bottom"><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
   </aside>
 
-  <header class="create-header"><a class="back-link" href="/status-pages"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M10.5 3.5 6 8l4.5 4.5M6.5 8H13" /></svg> Back to status pages</a><div><p class="section-kicker section-kicker-spacer" aria-hidden="true">Operator console</p><h1 id="create-status-title">Add new status page <span class="info-dot" title="Configure the public status page appearance and identity.">i</span></h1></div></header>
+  <header class="create-header"><a class="back-link" href="/status-pages"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M10.5 3.5 6 8l4.5 4.5M6.5 8H13" /></svg> Back to status pages</a><div><p class="section-kicker section-kicker-spacer" aria-hidden="true">Admin console</p><h1 id="create-status-title">{editing ? 'Edit status page' : 'Add new status page'} <span class="info-dot" title="Configure the public status page appearance and identity.">i</span></h1></div></header>
 
   <section class="create-shell" aria-labelledby="create-status-title">
     <form onsubmit={(event) => event.preventDefault()}>
@@ -191,11 +193,11 @@
   .schedule-button span { font-size: 1rem; font-weight: 500; line-height: 1; }
   .schedule-button:hover { filter: brightness(1.08); }
   .maintenance-items { overflow: hidden; border: 1px solid var(--border); border-radius: 8px; }
-  .maintenance-item { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 24px; min-height: 76px; padding: 15px 16px; border-top: 1px solid var(--border); }
+  .maintenance-item { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 24px; min-height: 76px; margin-top: 0; padding: 15px 16px; border-top: 1px solid var(--border); }
   .maintenance-item:first-child { border-top: 0; }
   .maintenance-item:hover { background: var(--surface-hover); }
   .maintenance-item-main { display: flex; min-width: 0; align-items: center; gap: 12px; }
-  .maintenance-dot { width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%; }
+  .maintenance-dot { width: 9px; height: 9px; flex: 0 0 auto; padding: 0; border-radius: 50%; }
   .maintenance-dot.scheduled { background: var(--maintenance-blue, #60a5fa); box-shadow: 0 0 0 4px rgb(96 165 250 / 10%); }
   .maintenance-dot.completed { background: var(--green); box-shadow: 0 0 0 4px rgb(16 185 129 / 10%); }
   .maintenance-item h3 { overflow: hidden; margin: 0; color: var(--ink); font-size: 0.8125rem; font-weight: 620; text-overflow: ellipsis; white-space: nowrap; }

@@ -1,6 +1,6 @@
 <svelte:head>
   <title>Create monitor — Znayu</title>
-  <meta name="description" content="Create a monitor in the Znayu operator console." />
+  <meta name="description" content="Create a monitor in the Znayu admin console." />
 </svelte:head>
 
 <script lang="ts">
@@ -34,18 +34,18 @@
       <a class="active" href="/monitors" aria-current="page"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 15.5V4.5h14v11H3Zm3-3 2-2 2 1.5 3-4 2 2.5" /></svg> Monitors</a>
       <a href="/dashboard#activity"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v7l4 2M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg> Activity</a>
     </nav>
-    <div class="sidebar-bottom"><a href="/status/acme-cloud" class="public-link">View public status</a><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
+    <div class="sidebar-bottom"><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
   </aside>
   <header class="create-header">
     <a class="back-link" href="/monitors"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M10.5 3.5 6 8l4.5 4.5M6.5 8H13" /></svg> Back to monitors</a>
     <div>
-      <p class="section-kicker section-kicker-spacer" aria-hidden="true">Operator console</p>
+      <p class="section-kicker section-kicker-spacer" aria-hidden="true">Admin console</p>
       <h1 id="create-title">Add new monitor <span class="info-dot" title="Configure the check that will represent one service in your status pages." aria-label="Configure the check that will represent one service in your status pages.">i</span></h1>
     </div>
   </header>
 
   <section class="create-shell" aria-labelledby="create-title">
-    <div class="create-heading" hidden><p>Operator console</p><h1>New monitor</h1><span>Configuration</span></div>
+    <div class="create-heading" hidden><p>Admin console</p><h1>New monitor</h1><span>Configuration</span></div>
     <form onsubmit={(event) => event.preventDefault()}>
       <div class="form-tabs" role="tablist" aria-label="Monitor sections">
         <button class:active={activeTab === 'general'} type="button" role="tab" aria-selected={activeTab === 'general'} onclick={() => activeTab = 'general'}>General</button>

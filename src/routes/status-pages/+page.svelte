@@ -22,7 +22,7 @@
 
 <svelte:head>
   <title>Status pages — Znayu</title>
-  <meta name="description" content="Review public status pages in the Znayu operator console." />
+  <meta name="description" content="Review public status pages in the Znayu admin console." />
 </svelte:head>
 
 <main class:sidebar-collapsed={sidebarCollapsed} class="status-pages-page">
@@ -35,15 +35,15 @@
       <a href="/monitors"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 15.5V4.5h14v11H3Zm3-3 2-2 2 1.5 3-4 2 2.5" /></svg> Monitors</a>
       <a href="/dashboard#activity"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v7l4 2M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg> Activity</a>
     </nav>
-    <div class="sidebar-bottom"><a href="/status/acme-cloud" class="public-link">View public status</a><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
+    <div class="sidebar-bottom"><div class="operator"><span class="operator-avatar" aria-hidden="true">JS</span><span><strong>Jordan Smith</strong><small>Owner</small></span><button type="button">More</button></div></div>
   </aside>
 
   <section class="status-pages-content" aria-labelledby="status-pages-title">
-    <header class="content-header"><div><p class="section-kicker">Operator console</p><h1 id="status-pages-title">Status pages</h1></div><div class="header-actions"><label class="search-wrap"><span class="search-icon" aria-hidden="true"></span><span class="sr-only">Search status pages</span><input type="search" placeholder="Search status pages" /></label><a class="create-button" href="/status-pages/new">Create status page</a></div></header>
+    <header class="content-header"><div><p class="section-kicker">Admin console</p><h1 id="status-pages-title">Status pages</h1></div><div class="header-actions"><label class="search-wrap"><span class="search-icon" aria-hidden="true"></span><span class="sr-only">Search status pages</span><input type="search" placeholder="Search status pages" /></label><a class="create-button" href="/status-pages/new">Create status page</a></div></header>
     <section class="status-pages-register" aria-labelledby="register-title">
       <header class="register-header"><h2 id="register-title"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="m3 6 5 5 5-5" /></svg> Status pages</h2><span>{statusPages.length} configured</span></header>
       {#each statusPages as page}
-        <article class="status-page-row"><span class="state-dot {page.state}" aria-label={page.state}></span><div class="page-identity"><h3><a href={`/status/${page.statusSlug}`}>{page.name}</a></h3><p>{page.slug}</p></div><div class="page-state {page.state}"><span></span>{page.state === 'operational' ? 'Operational' : 'Degraded'}</div><div class="page-stat"><strong>{page.uptime}</strong><span>{page.services} services</span></div><button class="row-menu" type="button" aria-label={`Actions for ${page.name}`}>More</button></article>
+        <article class="status-page-row"><span class="state-dot {page.state}" aria-label={page.state}></span><div class="page-identity"><h3><a href={`/status-pages/new?edit=${page.statusSlug}`}>{page.name}</a> <a class="external-arrow-link" href={`/status/${page.statusSlug}`} aria-label={`Open public status page for ${page.name}`}><svg class="external-arrow" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"><path d="M4 12 12 4M6 4h6v6" /></svg></a></h3><p>{page.slug}</p></div><div class="page-state {page.state}"><span></span>{page.state === 'operational' ? 'Operational' : 'Degraded'}</div><div class="page-stat"><strong>{page.uptime}</strong><span>{page.services} services</span></div><button class="row-menu" type="button" aria-label={`Actions for ${page.name}`}>More</button></article>
       {/each}
     </section>
   </section>
@@ -57,4 +57,5 @@
   :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
   @media (max-width: 860px) { .status-pages-content { padding: 48px 28px 48px; }.content-header { align-items: flex-start; flex-direction: column; }.header-actions { width: 100%; }.search-wrap { flex: 1; width: auto; } }
   @media (max-width: 680px) { .status-pages-page { display: block; }.sidebar { position: static; height: auto; min-height: auto; padding: 14px 12px 12px; border-right: 0; border-bottom: 1px solid var(--border); }.sidebar-top { padding: 0 4px; }.sidebar-toggle { display: none; }.create-actions { margin: 22px 0 14px; }.sidebar-nav { display: flex; overflow-x: auto; }.sidebar-nav a { flex: 0 0 auto; }.sidebar-bottom { display: none; }.status-pages-content { padding: 28px 14px 40px; }.header-actions { align-items: stretch; flex-direction: column; }.search-wrap { width: 100%; }.create-button { justify-content: center; }.status-page-row { grid-template-columns: 10px minmax(0, 1fr) 42px; }.page-state, .page-stat { display: none; } }
+  .external-arrow-link { display: inline-flex; color: var(--muted); text-decoration: none; vertical-align: -1px; }.external-arrow-link:hover { color: var(--ink); }.external-arrow { display: inline-block; width: 12px; height: 12px; margin-left: 3px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.25; vertical-align: -1px; }
 </style>

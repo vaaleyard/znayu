@@ -61,6 +61,34 @@ a {
   display: none;
 }
 
+.sidebar-collapsed .sidebar-nav a {
+  position: relative;
+}
+
+.sidebar-collapsed .sidebar-nav a::after {
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: calc(100% + 16px);
+  display: none;
+  padding: 7px 9px;
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: 0 6px 14px rgb(0 0 0 / 18%);
+  content: attr(aria-label);
+  font-size: 0.6875rem;
+  line-height: 1;
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.sidebar-collapsed .sidebar-nav a:hover::after,
+.sidebar-collapsed .sidebar-nav a:focus-visible::after {
+  display: block;
+}
+
 .status-page {
   min-height: 100svh;
   padding: 0 20px 44px;
